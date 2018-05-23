@@ -6,10 +6,12 @@ class DBHelper {
   /**
    * Database URL.
    * Change this to restaurants.json file location on your server.
+   * const port = 8000 // Change this to your server port
+   * return `http://localhost:${port}/data/restaurants.json`;
    */
+   
   static get DATABASE_URL() {
-    const port = 8000 // Change this to your server port
-    return `http://localhost:${port}/data/restaurants.json`;
+    return `https://ewitmer.github.io/mws-restaurant-stage-1/data/restaurants.json`;
   }
 
   /**
