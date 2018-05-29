@@ -9,7 +9,7 @@ class DBHelper {
    * const port = 8000 // Change this to your server port
    * return `http://localhost:${port}/data/restaurants.json`;
    */
-   
+
   static get DATABASE_URL() {
     return `https://ewitmer.github.io/mws-restaurant-stage-1/data/restaurants.json`;
   }
@@ -152,7 +152,7 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`);
+    return (`img/${restaurant.photograph}`);
   }
 
   /**
