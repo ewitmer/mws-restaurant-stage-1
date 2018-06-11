@@ -19,14 +19,16 @@
     <section id="map-container">
       <div id="map"></div>
     </section>
-    <section id="restaurant">
+    <section id="restaurant" tabindex="-1">
       <div class="filter-options">
-        <h2>Filter Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" tabindex="0" onchange="updateRestaurants()">
-          <option value="all">All Neighborhoods</option>
+        <h2>Filter Results By</h2>
+        <label id="neighborhood" class="label-filter" for="neighborhoods-select">neighborhood:</label>
+        <select id="neighborhoods-select" name="neighborhoods" tabindex="0" role="listbox" aria-labelledby="neighborhood" onchange="updateRestaurants()">
+          <option value="all" role="option">All Neighborhoods</option>
         </select>
-        <select id="cuisines-select" name="cuisines" tabindex="0" onchange="updateRestaurants()">
-          <option value="all">All Cuisines</option>
+        <label id="cuisine" class="label-filter" for="cuisines-select">cuisine:</label>
+        <select id="cuisines-select" name="cuisines" tabindex="0" role="listbox" aria-labelledby="cuisine" onchange="updateRestaurants()">
+          <option value="all" role="option">All Cuisines</option>
         </select>
       </div>
       <ul id="restaurants-list"></ul>

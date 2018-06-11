@@ -132,13 +132,15 @@ nav h1 a {
   background-color: #3397DB;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .filter-options h2 {
   color: white;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1;
-  margin: 0 20px;
+  margin-right: 20px;
+  margin-bottom: 0px;
 }
 .filter-options select {
   background-color: white;
@@ -150,6 +152,11 @@ nav h1 a {
   margin: 10px;
   padding: 0 10px;
   width: 200px;
+}
+
+.label-filter {
+  padding: none;
+  color: white;
 }
 
 /* ====================== Restaurant Listing ====================== */
@@ -315,10 +322,16 @@ nav h1 a {
     max-width: calc(95% - 50px);
   }
   .filter-options {
-  height: 120px;
+  height: 175px;
   flex-direction: column;
-  padding: 10px;
   }
+
+  .filter-options h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+  }
+
   #breadcrumb {
     width: 100%
   }

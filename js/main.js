@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   fetchCuisines();
 });
 
+
 /**
  * Fetch all neighborhoods and set their HTML.
  */
@@ -35,6 +36,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
+    option.setAttribute('role', 'option');
     select.append(option);
   });
 }
@@ -142,7 +144,6 @@ createRestaurantHTML = (restaurant) => {
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.alt = restaurant.photo;
-  console.log(restaurant)
   li.append(image);
 
   const name = document.createElement('h1');
@@ -176,5 +177,21 @@ addMarkersToMap = (restaurants = self.restaurants) => {
       window.location.href = marker.url
     });
     self.markers.push(marker);
+  });
+}
+
+
+/*
+* Add service worker
+*/
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw/index.js')
+  .then(function(reg) {
+    // registration worked
+    console.log('Registration succeeded. Scope is ' + reg.scope);
+  }).catch(function(error) {
+    // registration failed
+    console.log('Registration failed with ' + error);
   });
 }
