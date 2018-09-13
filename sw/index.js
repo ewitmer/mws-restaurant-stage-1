@@ -8,7 +8,6 @@ self.addEventListener('install', function(event) {
     caches.open(staticCacheName).then(function(cache) {
       return cache.addAll([
       	'/index.html',
-      	'/skeleton',
         '/data/restaurants.json',
         '/css/styles.css',
         '/img/1.jpg',
@@ -45,18 +44,45 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+  
+
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        return response || fetch(event.request);
+    })
+  );
+
+
+  var fetchRequest = event.request.clone();
+
+  return fetch(fetchRequest).then(
+    function(response) {
+      // Check if we received a valid response
+      if(!response || response.status !== 200 || response.type !== 'basic') {
+        return response;
+      }
+
+      // IMPORTANT: Clone the response. A response is a stream
+      // and because we want the browser to consume the response
+      // as well as the cache consuming the response, we need
+      // to clone it so we have two streams.
+      var responseToCache = response.clone();
+
+      caches.open(cacheName)
+        .then(function(cache) {
+          cache.put(event.request, responseToCache);
+        });
+
+      return response;
+  });
+})
+/*
   var requestUrl = new URL(event.request.url);
 
   if (requestUrl.origin === location.origin) {
     if (requestUrl.pathname === '/') {
-      event.respondWith(caches.match('/skeleton'));
+      event.respondWith(caches.match('/'));
       return;
     }
-  }
-
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
-    })
-  );
-});
+  }*/
